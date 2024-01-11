@@ -7,10 +7,10 @@ paging: Slide %d / %d
 
 # Overview
 
-- Nix language basics
-- Introduction to flakes
-- NixOS configurations
-- Deploying a service on a server
+1. Nix language basics
+2. Introduction to flakes
+3. NixOS configurations
+4. Deploying a service on a server
 
 ---
 
@@ -37,7 +37,6 @@ paging: Slide %d / %d
 ```nix
 { a = "b", c = 3; }
 ```
-
 
 https://nixos.org/manual/nix/stable/language/values
 
@@ -67,6 +66,7 @@ https://nixos.org/manual/nix/stable/language/values
 ---
 
 ## Basic language constructs
+
 ### let ... in
 
 ```nix
@@ -103,7 +103,7 @@ nix-repl> concatThreeStrings {x = "foo"; y = "bar"; z = "baz"; }
 
 Conditionals, rec, with, inherit...
 
-> https://nixos.org/manual/nix/stable/language/constructs
+https://nixos.org/manual/nix/stable/language/constructs
 
 ---
 
