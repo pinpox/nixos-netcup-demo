@@ -1,6 +1,7 @@
 { config, pkgs, ... }: {
 
   # Mostly auto-generated
+  # nixos-generate-config --show-hardware-config
   imports = [ ./hardware-configuration.nix ];
 
   # "Install" git
