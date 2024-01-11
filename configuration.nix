@@ -1,5 +1,8 @@
 { config, pkgs, ... }: {
 
+  # Mostly auto-generated
+  imports = [ ./hardware-configuration.nix ];
+
   # "Install" git
   environment.systemPackages = [ pkgs.git ];
 
@@ -9,7 +12,7 @@
 
   # Networking and SSH
   networking = {
-    hostName = "joes-desktop";
+    hostName = "awesome-server-01";
     interfaces.eth0.useDHCP = true;
   };
 

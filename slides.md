@@ -179,7 +179,7 @@ https://nixos.wiki/wiki/Flakes#Output_schema
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
  
   outputs = { self, nixpkgs }: {
-    nixosConfigurations.joes-desktop = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.awesome-server-01 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [ ./configuration.nix ];
     };
@@ -218,7 +218,7 @@ https://search.nixos.org/options
 
   # Networking and SSH
   networking = {
-    hostName = "joes-desktop";
+    hostName = "awesome-server-01";
     interfaces.eth0.useDHCP = true;
   };
 
@@ -289,16 +289,13 @@ security.acme = {
 ## System Configurations
 ### Deployment
 
-```sh
-nixos-rebuild switch --target-host root@myserver --flake ".#joes-desktop"
-```
-
-
 🚀 Demo time 🚀
 
----
-
-
+```sh
+nix flake show
+nix flake check
+nixos-rebuild switch --target-host root@myserver --flake ".#awesome-server-01"
+```
 
 ---
 ## More topics
@@ -308,11 +305,10 @@ nixos-rebuild switch --target-host root@myserver --flake ".#joes-desktop"
 - Secret management
 - CI and caching
 - Container management
+- Generating configured images
 - VM-tests
 - Deployment tools
 
 [Options and Packages](https://search.nixos.org/)
 
 ---
-
-
