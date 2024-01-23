@@ -10,3 +10,6 @@ jobs:
       # with:
       #   github_access_token: ${{ secrets.GITHUB_TOKEN }}
     - run: nix flake check
+    - run: nix run github:numtide/nixos-anywhere -- --flake .\#awesome-server-01 root@${{env.DEMO_SERVER_IP }}
+
+# https://github.com/pinpox/nixos-netcup-demo/settings/variables/actions
