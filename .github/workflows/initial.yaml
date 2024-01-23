@@ -6,12 +6,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    # - uses: webfactory/ssh-agent@v0.8.0
+    #   with:
+    #       ssh-private-key: ${{ secrets.SSH_SECRET_KEY }}
     - uses: cachix/install-nix-action@v22
       # with:
       #   github_access_token: ${{ secrets.GITHUB_TOKEN }}
     # - run: ls $HOME/secrets/
-    - run: echo "${{ secrets.SSH_SECRET_KEY }}" > ./priv_key
     # - run: nix flake check
-    - run: nix run github:numtide/nixos-anywhere -- -i ./priv_key --flake .\#awesome-server-01 root@${{env.DEMO_SERVER_IP }}
+    - run: mkdir -p ~/.ssh
+    - run: echo "${{ secrets.SSH_SECRET_KEY }}" > ~/.ssh/deploy_key
+    - run: nix run github:numtide/nixos-anywhere -- -i ~/.ssh/deploy_key --flake .\#awesome-server-01 root@${{env.DEMO_SERVER_IP }}
 
 # https://github.com/pinpox/nixos-netcup-demo/settings/variables/actions
