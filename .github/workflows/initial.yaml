@@ -2,13 +2,14 @@ name: "Intial deployment"
 on:
   workflow_dispatch:
 jobs:
-  tests:
+  deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - uses: cachix/install-nix-action@v22
       # with:
       #   github_access_token: ${{ secrets.GITHUB_TOKEN }}
+    - run: ls $HOME/secrets/
     - run: nix flake check
     - run: nix run github:numtide/nixos-anywhere -- --flake .\#awesome-server-01 root@${{env.DEMO_SERVER_IP }}
 
