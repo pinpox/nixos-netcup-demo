@@ -16,6 +16,6 @@ jobs:
     # - run: nix flake check
     - run: mkdir -p ~/.ssh
     - run: echo "${{ secrets.SSH_SECRET_KEY }}" > ~/.ssh/deploy_key
-    - run: nix run github:numtide/nixos-anywhere -- -i ~/.ssh/deploy_key --flake .\#awesome-server-01 root@${{env.DEMO_SERVER_IP }}
+    - run: nix run github:numtide/nixos-anywhere -- --debug -i ~/.ssh/deploy_key --flake .\#awesome-server-01 root@${{env.DEMO_SERVER_IP }}
 
 # https://github.com/pinpox/nixos-netcup-demo/settings/variables/actions
