@@ -10,8 +10,8 @@ jobs:
       # with:
       #   github_access_token: ${{ secrets.GITHUB_TOKEN }}
     # - run: ls $HOME/secrets/
-    - run: ssh-add - <<< "${{ secrets.SSH_SECRET_KEY }}"
+    - run: echo "${{ secrets.SSH_SECRET_KEY }}" > ./priv_key
     # - run: nix flake check
-    # - run: nix run github:numtide/nixos-anywhere -- --flake .\#awesome-server-01 root@${{env.DEMO_SERVER_IP }}
+    - run: nix run github:numtide/nixos-anywhere -- -i ./priv_key --flake .\#awesome-server-01 root@${{env.DEMO_SERVER_IP }}
 
 # https://github.com/pinpox/nixos-netcup-demo/settings/variables/actions
