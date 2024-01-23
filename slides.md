@@ -269,7 +269,7 @@ services.nginx = {
   recommendedProxySettings = true;
   recommendedTlsSettings = true;
 
-  virtualHosts."lounge.myhost.org" = {
+  virtualHosts."demo.megaclan3000.de" = {
     enableACME = true;
     forceSSL = true;
     locations."/" = {
