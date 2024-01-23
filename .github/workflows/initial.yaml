@@ -9,8 +9,9 @@ jobs:
     - uses: cachix/install-nix-action@v22
       # with:
       #   github_access_token: ${{ secrets.GITHUB_TOKEN }}
-    - run: ls $HOME/secrets/
-    - run: nix flake check
-    - run: nix run github:numtide/nixos-anywhere -- --flake .\#awesome-server-01 root@${{env.DEMO_SERVER_IP }}
+    # - run: ls $HOME/secrets/
+    - run: ssh-add - <<< "${{ secrets.SSH_SECRET_KEY }}"
+    # - run: nix flake check
+    # - run: nix run github:numtide/nixos-anywhere -- --flake .\#awesome-server-01 root@${{env.DEMO_SERVER_IP }}
 
 # https://github.com/pinpox/nixos-netcup-demo/settings/variables/actions
