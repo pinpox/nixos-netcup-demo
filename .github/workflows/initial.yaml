@@ -1,23 +1,17 @@
 name: "Intial deployment"
 on:
   workflow_dispatch:
+    inputs:
+      demo_server_ip:
+        description: 'IP of the server'
+        required: true
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    # - uses: webfactory/ssh-agent@v0.8.0
-      with:
-          # ssh-private-key: ${{ secrets.SSH_SECRET_KEY }}
-          SERVER_IP: ${{ env.DEMO_SERVER_IP }}
     - uses: cachix/install-nix-action@v22
-      # with:
-      #   github_access_token: ${{ secrets.GITHUB_TOKEN }}
-    # - run: ls $HOME/secrets/
-    # - run: nix flake check
-    - run: echo $SERVER_IP
     - run: mkdir -p ~/.ssh
     - run: echo "${{ secrets.SSH_SECRET_KEY }}" > ~/.ssh/deploy_key
-    - run: nix run github:numtide/nixos-anywhere -- --debug -i ~/.ssh/deploy_key --flake .\#awesome-server-01 root@${{env.DEMO_SERVER_IP }}
-
-# https://github.com/pinpox/nixos-netcup-demo/settings/variables/actions
+    - run: chmod 700 ~/.ssh && chmod 600 ~/.ssh/deploy_key
+    - run: nix run github:numtide/nixos-anywhere -- -i ~/.ssh/deploy_key --flake .\#awesome-server-01 root@${{inputs.demo_server_ip }}
