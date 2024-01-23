@@ -1,6 +1,6 @@
 { modulesPath, ... }:
 let
-  primaryDisk = "/dev/vda";
+  primaryDisk = "/dev/sda";
 in
 {
 
